@@ -1,26 +1,40 @@
 package com.generation.blogpessoal.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-/*
-@Entity
-@Table(name = "tb_tema")
-public class Tema {
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "tb_temas")
+public class Tema {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
-	
-	@NotNull
-	private String descricao;
-	
+	private Long id;
 
+	@NotNull(message = "O Atributo Descrição é obrigatório")
+	private String descricao;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("tema")
+	private List<Postagem> postagem;
+	
 	public Long getId() {
-		return Id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getDescricao() {
@@ -30,5 +44,5 @@ public class Tema {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 }
-*/
