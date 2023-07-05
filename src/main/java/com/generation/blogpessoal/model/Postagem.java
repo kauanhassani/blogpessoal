@@ -18,26 +18,30 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "tb_postagens")
 public class Postagem {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank //nem vazio e nem nulo
-	@Size(min = 3,max = 100)
+
+	@NotBlank // nem vazio e nem nulo
+	@Size(min = 3, max = 100)
 	private String titulo;
-	
-	@NotBlank //nem vazio e nem nulo
-	@Size(min = 10,max = 100)
+
+	@NotBlank // nem vazio e nem nulo
+	@Size(min = 10, max = 100)
 	private String texto;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime data;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-	
+
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+
 	public Long getId() {
 		return id;
 	}
@@ -78,5 +82,4 @@ public class Postagem {
 		this.tema = tema;
 	}
 
-	
 }
