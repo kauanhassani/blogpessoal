@@ -67,7 +67,7 @@ public class UsuarioControllerTest {
 			"Maria da Silva", "maria_silva@email.com.br","12345678","-"));
 		
 		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario(0L,
-			"Maria da Silva", "maria_silva@email.com.br","12345678","-"));
+			"Maria Silva", "maria_docarmo@email.com.br","12345678","-"));
 		
 		ResponseEntity<Usuario> corpoResposta = testRestTemplate
 				.exchange("/usuarios/cadastrar", HttpMethod.POST, corpoRequisicao,Usuario.class);
